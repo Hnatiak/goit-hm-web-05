@@ -25,7 +25,7 @@ class ExchangeRateService:
 
 def parse_arguments():
     if len(sys.argv) != 2:
-        print("Приклад: python main.py <кількість днів>")
+        print("Example usage: python main.py <number of days>")
         sys.exit(1)
     try:
         days = int(sys.argv[1])
