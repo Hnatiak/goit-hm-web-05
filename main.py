@@ -39,13 +39,12 @@ def parse_arguments():
 
 def format_exchange_rates(exchange_rates):
     formatted_rates = []
-    for i, rate in enumerate(exchange_rates):
-        date = (datetime.now() - timedelta(days=i)).strftime('%d.%m.%Y')
-        formatted_rate = {
-            date: {'EUR': {'sale': rate['exchangeRate'][0]['saleRateNB'],'purchase': rate['exchangeRate'][0]['purchaseRateNB']},
-                'USD': {'sale': rate['exchangeRate'][1]['saleRateNB'],'purchase': rate['exchangeRate'][1]['purchaseRateNB']}}}
-        formatted_rates.append(formatted_rate)
-    return formatted_rates
+    for exchange_rate in exchange_rates:
+        date = exchange_rate['date']
+        print(f'\n{date}:')
+        for r in exchange_rate['exchangeRate']:
+            if r['currency'] in ['USD', 'EUR']:
+                print(f'{r["currency"]}: sale: {r["saleRate"]}, buy: {r["purchaseRate"]}')
 
 async def main():
     days = parse_arguments()
